@@ -8,7 +8,12 @@ if [ -e "${WORKDIR}/package.json" ]; then
         npm run build
     fi
 
-    npm run dev
+    if [ ! -z $PRODUCTION ]; then
+        npm run build
+        npm run start
+    else
+        npm run dev
+    fi
 
     export PATH="${PATH}:${WORKDIR}/node_modules/.bin"
 fi
